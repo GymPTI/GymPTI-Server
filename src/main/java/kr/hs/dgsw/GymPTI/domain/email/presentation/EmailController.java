@@ -1,6 +1,7 @@
 package kr.hs.dgsw.GymPTI.domain.email.presentation;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import kr.hs.dgsw.GymPTI.common.response.Response;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/email")
 @RequiredArgsConstructor
+@Tag(name = "Email", description = "메일 API Document")
 public class EmailController {
 
     private final EmailService emailService;
