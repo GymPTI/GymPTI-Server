@@ -11,6 +11,7 @@ import kr.hs.dgsw.GymPTI.domain.user.entity.User;
 import kr.hs.dgsw.GymPTI.domain.user.presentation.dto.request.FindUserIdRequestDto;
 import kr.hs.dgsw.GymPTI.domain.user.presentation.dto.request.UpdateNicknameRequestDto;
 import kr.hs.dgsw.GymPTI.domain.user.presentation.dto.request.UpdatePasswordRequestDto;
+import kr.hs.dgsw.GymPTI.domain.user.presentation.dto.request.UpdateStatusMessageRequestDto;
 import kr.hs.dgsw.GymPTI.domain.user.presentation.dto.response.UserResponseDto;
 import kr.hs.dgsw.GymPTI.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +43,17 @@ public class UserController {
     ) {
         userService.updateNickname(updateNicknameRequestDto, user);
         return Response.ok("닉네임 변경 성공");
+    }
+
+    @Operation(summary = "상태메세지 변경")
+    @CheckAuthorization
+    @PutMapping("/statusMessage")
+    public ResponseEntity<Response> updateStatusMessage(
+            @Valid @RequestBody UpdateStatusMessageRequestDto updateStatusMessageRequestDto,
+            @RequestAttribute User user
+    ) {
+        userService.updateStatusMessage(updateStatusMessageRequestDto, user);
+        return Response.ok("상태메세지 변경 성공");
     }
 
     @Operation(summary = "아이디 찾기")

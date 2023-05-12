@@ -20,11 +20,7 @@ public class UserResponseDto {
         this.userId = user.getUserId();
         this.nickname = user.getNickname();
         this.email = user.getEmail();
-        if (user.getProfileImage() == null) {
-            this.profileImage = user.getProfileImage();
-        } else {
-            this.profileImage = "10.80.163.225:8080" + user.getProfileImage();
-        }
+        this.profileImage = user.getProfileImage();
         this.statusMessage = user.getStatusMessage();
     }
 
