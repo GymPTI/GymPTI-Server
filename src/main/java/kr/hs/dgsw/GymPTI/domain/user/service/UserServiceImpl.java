@@ -80,14 +80,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updatePassword(UpdatePasswordRequestDto updatePasswordRequestDto, HttpServletRequest request, User user) {
-
-        HttpSession session = Optional.ofNullable(request.getSession(false))
-                .orElseThrow(() -> new RuntimeException("이메일 인증 요청이 만료되었습니다"));
-
-        if (session.getAttribute("VALIDATE_STATUS").equals(ValidatedStatus.NOT_VALIDATED)) {
-            throw EmailNotValidatedException.EXCEPTION;
-        }
+    public void updatePassword(UpdatePasswordRequestDto updatePasswordRequestDto, User user) {
 
         if (!user.getPassword().equals(updatePasswordRequestDto.getOldPassword())) {
             throw new RuntimeException("기존 비밀번호가 일치하지 않습니다");

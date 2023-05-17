@@ -72,10 +72,9 @@ public class UserController {
     @PutMapping("/password")
     public ResponseEntity<Response> updatePassword(
             @Valid @RequestBody UpdatePasswordRequestDto updatePasswordRequestDto,
-            HttpServletRequest request,
             @RequestAttribute User user
     ) {
-        userService.updatePassword(updatePasswordRequestDto, request, user);
+        userService.updatePassword(updatePasswordRequestDto, user);
         return Response.ok("비밀번호 변경 성공");
     }
 

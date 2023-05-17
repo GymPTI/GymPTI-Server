@@ -19,7 +19,7 @@ public interface UserService {
 
     String findByUserId(FindUserIdRequestDto findUserIdRequestDto, HttpServletRequest request, User user);
 
-    void updatePassword(UpdatePasswordRequestDto updatePasswordRequestDto, HttpServletRequest request, User user);
+    void updatePassword(UpdatePasswordRequestDto updatePasswordRequestDto, User user);
 
     void updateProfileImage(MultipartFile profileImage, User user);
 
