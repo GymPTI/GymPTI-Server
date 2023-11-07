@@ -4,20 +4,19 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import kr.hs.dgsw.GymPTI.common.annotation.CheckAuthorization;
-import kr.hs.dgsw.GymPTI.common.response.DataResponse;
-import kr.hs.dgsw.GymPTI.common.response.Response;
+import kr.hs.dgsw.GymPTI.domain.user.presentation.dto.request.*;
+import kr.hs.dgsw.GymPTI.global.annotation.CheckAuthorization;
+import kr.hs.dgsw.GymPTI.global.response.DataResponse;
+import kr.hs.dgsw.GymPTI.global.response.Response;
 import kr.hs.dgsw.GymPTI.domain.user.entity.User;
-import kr.hs.dgsw.GymPTI.domain.user.presentation.dto.request.FindUserIdRequestDto;
-import kr.hs.dgsw.GymPTI.domain.user.presentation.dto.request.UpdateNicknameRequestDto;
-import kr.hs.dgsw.GymPTI.domain.user.presentation.dto.request.UpdatePasswordRequestDto;
-import kr.hs.dgsw.GymPTI.domain.user.presentation.dto.request.UpdateStatusMessageRequestDto;
 import kr.hs.dgsw.GymPTI.domain.user.presentation.dto.response.UserResponseDto;
 import kr.hs.dgsw.GymPTI.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.imageio.IIOImage;
 
 @RestController
 @RequestMapping("/user")
@@ -58,7 +57,7 @@ public class UserController {
 
     @Operation(summary = "아이디 찾기")
     @CheckAuthorization
-    @GetMapping("forgotId")
+    @GetMapping("/forgotId")
     public ResponseEntity<DataResponse<String>> findByUserId(
             @Valid @RequestBody FindUserIdRequestDto findUserIdRequestDto,
             HttpServletRequest request,
@@ -78,9 +77,19 @@ public class UserController {
         return Response.ok("비밀번호 변경 성공");
     }
 
+    @Operation(summary = "신체 정보 수정")
+    @CheckAuthorization
+    @PutMapping("/bodyInfo")
+    public ResponseEntity<Response> updateUserBodyInfo(
+            @RequestBody UpdateUserBodyInfoRequest request,
+            @RequestAttribute User user) {
+        userService.updateUserBodyInfo(request, user);
+        return Response.ok("신체 정보 수정 완료");
+    }
+
     @Operation(summary = "프로필 사진 변경")
     @CheckAuthorization
-    @PutMapping("profileImage")
+    @PutMapping("/profileImage")
     public ResponseEntity<Response> updateProfileImage(
             @RequestPart MultipartFile profileImage,
             @RequestAttribute User user

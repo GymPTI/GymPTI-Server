@@ -1,6 +1,7 @@
 package kr.hs.dgsw.GymPTI.domain.user.entity;
 
 import jakarta.persistence.*;
+import kr.hs.dgsw.GymPTI.domain.user.presentation.dto.request.UpdateUserBodyInfoRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,6 +33,15 @@ public class User {
 
     private String statusMessage;
 
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    private Double height;
+
+    private Double weight;
+
+    private Integer age;
+
     @Builder
     public User(String userId, String nickname, String email, String password) {
         this.userId = userId;
@@ -56,4 +66,10 @@ public class User {
         this.password = newPassword;
     }
 
+    public void updateUserBodyInfo(UpdateUserBodyInfoRequest request) {
+        this.gender = request.getGender() == null ? this.gender : request.getGender();
+        this.height = request.getHeight() == null ? this.height : request.getHeight();
+        this.weight = request.getWeight() == null ? this.weight : request.getWeight();
+        this.age = request.getAge() == null ? this.age : request.getAge();
+    }
 }

@@ -1,7 +1,7 @@
 package kr.hs.dgsw.GymPTI.domain.auth.exception;
 
-import kr.hs.dgsw.GymPTI.common.error.ErrorCode;
-import kr.hs.dgsw.GymPTI.common.exception.CustomException;
+import kr.hs.dgsw.GymPTI.global.error.ErrorCode;
+import kr.hs.dgsw.GymPTI.global.exception.CustomException;
 
 public class EmailNotValidatedException extends CustomException {
 

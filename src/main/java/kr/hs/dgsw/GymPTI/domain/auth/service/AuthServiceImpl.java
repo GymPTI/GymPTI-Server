@@ -2,7 +2,7 @@ package kr.hs.dgsw.GymPTI.domain.auth.service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import kr.hs.dgsw.GymPTI.common.jwt.JwtUtil;
+import kr.hs.dgsw.GymPTI.global.jwt.JwtUtil;
 import kr.hs.dgsw.GymPTI.domain.auth.exception.EmailNotValidatedException;
 import kr.hs.dgsw.GymPTI.domain.auth.exception.ExistEmailException;
 import kr.hs.dgsw.GymPTI.domain.auth.exception.ExistUserIdException;
